@@ -1,11 +1,22 @@
-{% extends 'base.html' %}
-
-{% comment %} for head title tags and helping us with SEO {% endcomment %}
-{% block title %}Card{% endblock  %}
-
+{% extends 'base.html' %} 
+{% block title%}- {{header}} {%endblock%}
 {% block content %}
 
-<h1 class="title pt-5">Trending Cards</h1>
+<h1 class="title">{{header}}</h1>
+
+<form class="mb-5" method="get">
+  <div class="field has-addons">
+    <div class="control">
+      <!--  Our input will search by name of card  -->
+      <input class="input" type="text" name="name" placeholder="name" />
+    </div>
+    <div class="control">
+      <input class="button is-success" type="submit" value="Search" />
+    </div>
+  </div>
+  <!--  This anchor tag will redirect back to card list without a query param -->
+  <a class="button is-dark" href="{% url 'card_list' %}">Clear Search</a>
+</form>
 <div class="gallery">
   {% for card in cards %}
   <a href="">
@@ -20,12 +31,7 @@
       </div>
     </div>
   </a>
-	{% empty %}
-  <article class="message">
-    <div class="message-header">
-      <p>No Cards Available</p>
-    </div>
-  </article>
   {% endfor %}
 </div>
+
 {% endblock %}

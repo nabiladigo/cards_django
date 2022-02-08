@@ -1,11 +1,11 @@
 from django.db import models
 
 # Create your models here.
-class Artist(models.Model):
+class Card(models.Model):
     
     name = models.CharField(max_length=100)
     img = models.CharField(max_length=250)
-    # price = models.TextField(max_length=500)
+    price = models.IntegerField(default=0)
     verified_card = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     
