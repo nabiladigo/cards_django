@@ -28,8 +28,26 @@
         </a>
     </div>
     <div class="detail__about">
-        <!-- <h4 class="title is-4">About</h4> -->
-        <p>{{card.price}}</p>
+
+  <div class="detail__songs mb-5">
+    <h3 class="title is-3">Cards</h3>
+
+    {% for print in card.prints.all %}
+    <div class="song">
+      <span>{{forloop.counter}}</span>
+      <span><b>{{print.image}}</b></span>
+      <span>{{card.name}}</span>
+     </div>
+		{% empty %}
+    <article class="message">
+      <div class="message-header">
+        <p>No prints Available</p>
+      </div>
+    </article>
+
+    {% endfor %}
+  </div>
+        <p>Starting at ${{print.price}}</p>
     </div>
 </div>
 
