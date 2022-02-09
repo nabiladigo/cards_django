@@ -19,7 +19,7 @@
 </form>
 <div class="gallery">
   {% for card in cards %}
-  <a href="">
+  <a href="{% url 'card_detail' card.pk %}">
     <div class="card">
       <div class="card-image">
         <figure class="image is-square">

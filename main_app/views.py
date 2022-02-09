@@ -1,8 +1,10 @@
-from django.shortcuts import render
-from django.views import View # <- View class to handle requests
 from django.views.generic.base import TemplateView # <- a class to handle sending a type of response
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views import View 
 from .models import Card
-from django.views.generic.edit import CreateView
 
 # Create your views here.
 
@@ -31,11 +33,28 @@ class CardList(TemplateView):
 
 class CardCreate(CreateView):
     model = Card
-    fields = ['name', 'img', 'price', 'verified_artist']
+    fields = ['name', 'img', 'price', 'verified_card']
     template_name = "card_create.html"
+    def get_success_url(self):
+        return reverse('card_detail', kwargs={'pk': self.object.pk})
+
+
+class CardDetail(DetailView):
+    model = Card
+    template_name = "card_detail.html"
+
+
+
+class CardUpdate(UpdateView):
+    model = Card
+    fields = ['name', 'img', 'price', 'verified_card']
+    template_name = "card_update.html"
+    def get_success_url(self):
+        return reverse('card_detail', kwargs={'pk': self.object.pk})
+
+class CardDelete(DeleteView):
+    model = Card
+    template_name = "card_delete_confirmation.html"
     success_url = "/cards/"
-
-
-
-
+    success_url = "/cards/"
     # <!-- for length {{song.length // 60:song.length%60}}  instead -->
