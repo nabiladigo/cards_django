@@ -71,10 +71,11 @@ class CardDelete(DeleteView):
 class PrintCreate(View):
     
     def post(self, request, pk):
+        name= request.POST.get("name")
         img = request.POST.get("img")
         price = request.POST.get("price")
         card = Card.objects.get(pk=pk)
-        Print.objects.create(img = img, price = price, print = print)
+        Print.objects.create(name=name, img = img, price = price, print = print)
         return redirect('artist_detail', pk=pk)
 
 

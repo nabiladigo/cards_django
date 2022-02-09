@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 {% block content %}
 <div class="detail__img">
-    <img src="{{card.image}}" alt="{{card.name}}" />
+    <img src="{{card.img}}" alt="{{card.name}}" />
 </div>
 <div class="detail__name">
     {% if card.verified_card %}
@@ -35,8 +35,9 @@
     {% for print in card.prints.all %}
     <div class="song">
       <span>{{forloop.counter}}</span>
-      <span><b>{{print.image}}</b></span>
-      <span>{{card.name}}</span>
+      <span><b>{{print.img}}</b></span>
+      <span>{{print.name}}</span>
+      <span>{{print.price}}</span>
      </div>
 		{% empty %}
     <article class="message">
@@ -47,7 +48,7 @@
 
     {% endfor %}
   </div>
-        <p>Starting at ${{print.price}}</p>
+        <p>Starting at ${{card.price}}</p>
     </div>
 </div>
 

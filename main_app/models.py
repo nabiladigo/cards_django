@@ -16,10 +16,11 @@ class Card(models.Model):
         ordering = ['name']
 
 class Print(models.Model):
-    
+
+    name = models.CharField(max_length=100)
     img = models.CharField(max_length=250)
     price = models.IntegerField(default=0)
     card = models.ForeignKey(Card, on_delete=models.CASCADE, related_name="cards")
 
     def __str__(self):
-        return self.title
+        return self.name
