@@ -12,7 +12,17 @@ from .models import Card
 
 class Home(TemplateView):
     template_name = "home.html"
-   
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     name = self.request.GET.get("name")
+    #     if name != None:
+    #         context["print"] = Home.objects.fillter(name__icontains = name)
+    #         context["header"] = f"Searching for {name}"
+    #     else:
+    #         context["print"] = Home.objects.all()
+    #         context["header"] = f"Trending Home"
+    #     return context
 
 class CardList(TemplateView):
     template_name = "card_list.html"
@@ -56,5 +66,7 @@ class CardDelete(DeleteView):
     model = Card
     template_name = "card_delete_confirmation.html"
     success_url = "/cards/"
-    success_url = "/cards/"
+
+
+
     # <!-- for length {{song.length // 60:song.length%60}}  instead -->
