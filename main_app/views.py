@@ -4,7 +4,7 @@ from django.views.generic import DetailView
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views import View 
-from .models import Card
+from .models import Card, Print
 
 # Create your views here.
 
@@ -67,6 +67,15 @@ class CardDelete(DeleteView):
     template_name = "card_delete_confirmation.html"
     success_url = "/cards/"
 
+
+class PrintCreate(View):
+    
+    def post(self, request, pk):
+        img = request.POST.get("img")
+        price = request.POST.get("price")
+        card = Card.objects.get(pk=pk)
+        Print.objects.create(img = img, price = price, print = print)
+        return redirect('artist_detail', pk=pk)
 
 
     # <!-- for length {{song.length // 60:song.length%60}}  instead -->

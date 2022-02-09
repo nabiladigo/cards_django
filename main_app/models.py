@@ -1,4 +1,3 @@
-from email.mime import image
 from django.db import models
 
 # Create your models here.
@@ -18,7 +17,7 @@ class Card(models.Model):
 
 class Print(models.Model):
     
-    image = models.CharField(max_length=250)
+    img = models.CharField(max_length=250)
     price = models.IntegerField(default=0)
     card = models.ForeignKey(Card, on_delete=models.CASCADE, related_name="cards")
 
