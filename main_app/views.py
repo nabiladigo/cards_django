@@ -12,17 +12,7 @@ from .models import Card, Print
 
 class Home(TemplateView):
     template_name = "home.html"
-
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     name = self.request.GET.get("name")
-    #     if name != None:
-    #         context["print"] = Home.objects.fillter(name__icontains = name)
-    #         context["header"] = f"Searching for {name}"
-    #     else:
-    #         context["print"] = Home.objects.all()
-    #         context["header"] = f"Trending Home"
-    #     return context
+    
 
 class CardList(TemplateView):
     template_name = "card_list.html"
@@ -75,8 +65,11 @@ class PrintCreate(View):
         img = request.POST.get("img")
         price = request.POST.get("price")
         card = Card.objects.get(pk=pk)
-        Print.objects.create(name=name, img = img, price = price, print = print)
+        Print.objects.create(name=name, img = img, price = price, card=card)
         return redirect('artist_detail', pk=pk)
 
 
     # <!-- for length {{song.length // 60:song.length%60}}  instead -->
+
+
+

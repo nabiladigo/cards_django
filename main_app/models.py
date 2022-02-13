@@ -17,7 +17,7 @@ class Card(models.Model):
 
 class Print(models.Model):
 
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default= str)
     img = models.CharField(max_length=250)
     price = models.IntegerField(default=0)
     card = models.ForeignKey(Card, on_delete=models.CASCADE, related_name="cards")
